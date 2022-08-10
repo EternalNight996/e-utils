@@ -126,6 +126,7 @@ pub fn rgb_format(
     s
 }
 
+#[derive(Debug)]
 pub enum Rand {
     Safe,
     UnSafe,

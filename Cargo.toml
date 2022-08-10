@@ -3,6 +3,7 @@
 
 [features]
 default = ["std"]
+full = ["std", "sys_info", "dns", "traceroute", "base64"]
 base64 = []
 random = ["rand"]
 std = ["random"]
@@ -70,6 +71,12 @@ path = "examples/traceroute.rs"
 name = "traceroute"
 required-features = ["traceroute"]
 
+[package.metadata.docs.rs]
+# To build locally:
+# RUSTDOCFLAGS="--cfg doc_cfg" cargo +nightly doc --all-features --no-deps --open
+all-features = true
+rustdoc-args = ["--cfg", "doc_cfg"]
+
 [package]
 name = "e-utils"
 version = "0.1.0"
@@ -77,22 +84,18 @@ edition = "2021"
 authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "a rust utils"
 license-file = "GNU-LICENSE"
+readme = "README.md"
+documentation = "https://docs.rs/e-utils"
+homepage = "https://github.com/EternalNight996"
 repository = "https://github.com/EternalNight996/e-utils"
-include = ["**/*.rs", "**/*.h", "**/*.c", "Cargo.toml"]
-keywords = [
-    "sys",
-    "info",
-    "tools",
-    "utils",
-    "traceroute",
-    "tracert",
-    "dns",
-    "base64",
-    "random",
-    "nanoid",
-    "color",
+include = ["src/", "c/", "README.md", "build.rs", "Cargo.toml"]
+keywords = ["sys", "info", "tools", "utils", "net"]
+categories = [
+    "development-tools::cargo-plugins",
+    "network-programming",
+    "command-line-utilities",
+    "asynchronous",
 ]
-categories = ["utils", "tools", "sys-info", "random", "encode", "decode"]
 rust-version = "1.62.0"
 build = "./build.rs"
 links = "links"
