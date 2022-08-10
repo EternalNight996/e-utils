@@ -28,7 +28,7 @@ winapi = { version = "^0.3", features = [
 name = "sys-utils"
 version = "0.1.0"
 edition = "2021"
-authors = ["1379 <EternalNightYeah2@yeah.net>"]
+authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "cross platform get OS utils api"
 license-file = "GNU-LICENSE"
 repository = ""

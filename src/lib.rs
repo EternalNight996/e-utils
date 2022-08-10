@@ -17,11 +17,6 @@ pub use sys_info;
 #[cfg_attr(docsrs, doc(cfg(feature = "sys_utils")))]
 pub use sys_utils;
 
-#[cfg(feature = "log")]
-#[cfg_attr(docsrs, doc(cfg(feature = "log")))]
-#[path = "./logger.rs"]
-pub mod log;
-
 #[cfg(feature = "base64")]
 #[cfg_attr(docsrs, doc(cfg(feature = "base64")))]
 pub mod base64;

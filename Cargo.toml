@@ -1,8 +1,5 @@
 [workspace]
-members = [
-    "crates/sys-info",
-    "crates/sys-utils"
-]
+members = ["crates/sys-info", "crates/sys-utils"]
 [lib]
 # crate-type = ["cdylib", "rlib"]
 
@@ -14,12 +11,14 @@ std = ["random"]
 crypto = ["base64", "random"]
 sys_info = ["sys-info"]
 sys_utils = ["sys-utils"]
-log = [] # 待开发
 
 [dependencies]
 rand = { version = "0.8.4", optional = true, features = ["small_rng"] }
 sys-info = { version = "*", path = "crates/sys-info", optional = true }
-sys-utils = { version = "*", path = "crates/sys-utils", optional = true, features = ["dns", "traceroute"]}
+sys-utils = { version = "*", path = "crates/sys-utils", optional = true, features = [
+    "dns",
+    "traceroute",
+] }
 
 [target.'cfg(windows)'.dependencies]
 [target.'cfg(unix)'.dependencies]
@@ -47,21 +46,28 @@ path = "examples/sys_traceroute.rs"
 name = "sys_traceroute"
 required-features = ["sys_utils"]
 
-# [profile.release]
-# lto = true
-# strip = true
-# opt-level = "z"
-# codegen-units = 1
-# panic = "abort"
-# incremental = false
-
 [package]
 name = "e-utils"
 version = "0.1.0"
 edition = "2021"
-authors = ["Eternal <EternalNightYeah2@yeah.net>"]
-description = "utils of 1379-server"
+authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
+description = "a rust utils"
 license-file = "GNU-LICENSE"
-repository = ""
+repository = "https://github.com/EternalNight996/e-utils"
+include = ["**/*.rs", "Cargo.toml"]
+keywords = [
+    "sys",
+    "info",
+    "tools",
+    "utils",
+    "traceroute",
+    "tracert",
+    "dns",
+    "base64",
+    "random",
+    "nanoid",
+    "color"
+]
+categories = ["utils", "tools", "sys-info", "random", "encode", "decode"]
 rust-version = "1.62.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

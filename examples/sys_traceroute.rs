@@ -1,7 +1,7 @@
 use sys_utils::traceroute::Traceroute;
 
 fn main() -> Result<(), String> {
-    let target = "113.81.60.171".to_owned();
+    let target = "114.114.114.114".to_owned();
     let tracert = Traceroute::new(target, None)?;
     println!("{}\n", tracert.get_info());
     for hop in tracert {
