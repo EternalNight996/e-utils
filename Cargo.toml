@@ -78,7 +78,7 @@ authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "a rust utils"
 license-file = "GNU-LICENSE"
 repository = "https://github.com/EternalNight996/e-utils"
-include = ["**/*.rs", "Cargo.toml"]
+include = ["**/*.rs", "**/*.h", "**/*.c", "Cargo.toml"]
 keywords = [
     "sys",
     "info",
