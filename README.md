@@ -4,3 +4,9 @@
 # ⚡ 这是什么?
 
 这是一个rust集成工具!
+
+# 📖 演示
+```toml
+[dependencies]
+e-utils = { version = "0.1.0", features = ["full"] }
+```

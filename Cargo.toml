@@ -88,7 +88,7 @@ readme = "README.md"
 documentation = "https://docs.rs/e-utils"
 homepage = "https://github.com/EternalNight996"
 repository = "https://github.com/EternalNight996/e-utils"
-include = ["src/", "c/", "README.md", "build.rs", "Cargo.toml"]
+include = ["src/", "c/", "*.md", "*-LICENSE", "build.rs", "Cargo.toml"]
 keywords = ["sys", "info", "tools", "utils", "net"]
 categories = [
     "development-tools::cargo-plugins",
