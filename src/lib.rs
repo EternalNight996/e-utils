@@ -10,13 +10,9 @@ cfg_std! {
     pub mod p_std;
 }
 
-#[cfg(feature = "sys_info")]
-#[cfg_attr(docsrs, doc(cfg(feature = "sys_info")))]
-pub use sys_info;
-#[cfg(feature = "sys_utils")]
-#[cfg_attr(docsrs, doc(cfg(feature = "sys_utils")))]
-pub use sys_utils;
-
 #[cfg(feature = "base64")]
 #[cfg_attr(docsrs, doc(cfg(feature = "base64")))]
 pub mod base64;
+
+mod sys_utils;
+pub use sys_utils::*;
