@@ -2,8 +2,9 @@
 #![deny(missing_docs)]
 use std::mem;
 
+/// allocate
 #[inline]
-pub unsafe fn allocate(size: usize) -> *mut u8 {
+pub(crate) unsafe fn allocate(size: usize) -> *mut u8 {
     ptr_from_vec(Vec::with_capacity(size))
 }
 #[inline]
@@ -12,16 +13,19 @@ fn ptr_from_vec(mut buf: Vec<u8>) -> *mut u8 {
     mem::forget(buf);
     ptr
 }
+/// deallocate
 #[inline]
-pub unsafe fn deallocate(ptr: *mut u8, old_size: usize) {
+pub(crate) unsafe fn deallocate(ptr: *mut u8, old_size: usize) {
     Vec::from_raw_parts(ptr, 0, old_size);
 }
+/// empty
 #[allow(dead_code)]
-pub fn empty() -> *mut u8 {
+pub(crate) fn empty() -> *mut u8 {
     1 as *mut u8
 }
+/// reallocate
 #[allow(dead_code)]
-pub unsafe fn reallocate(ptr: *mut u8, old_size: usize, new_size: usize) -> *mut u8 {
+pub(crate) unsafe fn reallocate(ptr: *mut u8, old_size: usize, new_size: usize) -> *mut u8 {
     if old_size > new_size {
         let mut buf = Vec::from_raw_parts(ptr, new_size, old_size);
         buf.shrink_to_fit();

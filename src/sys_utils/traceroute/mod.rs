@@ -1,7 +1,3 @@
-extern crate pnet;
-pub mod interface;
-pub(crate) mod packet_builder;
-
 use async_std::task::block_on;
 use pnet::datalink::{self, channel};
 use pnet::datalink::{MacAddr, NetworkInterface};
@@ -15,10 +11,13 @@ use std::str::FromStr;
 use std::time::Duration;
 
 use crate::dns;
-
-use self::interface::{get_default_gateway, get_local_ipaddr};
+/// interface
+pub mod interface;
+use interface::{get_default_gateway, get_local_ipaddr};
+pub(crate) mod packet_builder;
 
 /// Traceroute instance containing destination address and configurations
+#[derive(Debug)]
 pub struct Traceroute {
     src_target: String,
     target: IpAddr,
@@ -159,7 +158,7 @@ impl Traceroute {
     }
 }
 
-#[derive(PartialEq)]
+#[derive(PartialEq, Debug)]
 /// Protocol to be used for traceroute
 pub enum Protocol {
     /// UDP-based traceroute
@@ -170,6 +169,7 @@ pub enum Protocol {
     ICMP,
 }
 
+#[derive(Debug)]
 pub(crate) struct Channel {
     interface: NetworkInterface,
     packet_builder: packet_builder::PacketBuilder,
@@ -194,7 +194,7 @@ impl Default for Channel {
 }
 
 impl Channel {
-    pub fn new(network_interface: NetworkInterface, port: u16, ttl: u8) -> Self {
+    pub(crate) fn new(network_interface: NetworkInterface, port: u16, ttl: u8) -> Self {
         let source_ip = network_interface
             .ips
             .iter()
@@ -391,6 +391,7 @@ fn process_incoming_packet(
 }
 
 /// Traceroute configurations
+#[derive(Debug)]
 pub struct Config {
     port: u16,
     max_hops: u32,
@@ -401,6 +402,7 @@ pub struct Config {
 }
 
 /// Single traceroute hop containing TTL and a vector of traceroute query results
+#[derive(Debug)]
 pub struct TracerouteHop {
     /// Current Time-To-Live
     pub ttl: u8,
@@ -409,6 +411,7 @@ pub struct TracerouteHop {
 }
 
 /// Result of a single query execution - IP and RTT
+#[derive(Debug)]
 pub struct TracerouteQueryResult {
     /// Round-Trip Time
     pub rtt: Duration,

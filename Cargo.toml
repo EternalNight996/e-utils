@@ -2,7 +2,7 @@
 # crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["std"]
+default = ["full"]
 full = ["std", "sys_info", "dns", "traceroute", "base64"]
 base64 = []
 random = ["rand"]
@@ -79,7 +79,7 @@ rustdoc-args = ["--cfg", "doc_cfg"]
 
 [package]
 name = "e-utils"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "a rust utils"
@@ -88,8 +88,8 @@ readme = "README.md"
 documentation = "https://docs.rs/e-utils"
 homepage = "https://github.com/EternalNight996"
 repository = "https://github.com/EternalNight996/e-utils"
-include = ["src/", "c/", "*.md", "*-LICENSE", "build.rs", "Cargo.toml"]
-keywords = ["sys", "info", "tools", "utils", "net"]
+include = ["src/", "c/", "test/", "*.md", "*-LICENSE", "build.rs", "Cargo.toml"]
+keywords = ["utils", "info", "tools", "e-utils", "e-"]
 categories = [
     "development-tools::cargo-plugins",
     "network-programming",

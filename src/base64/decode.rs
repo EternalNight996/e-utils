@@ -2,14 +2,17 @@ use super::{Config, STANDARD};
 use std::fmt;
 use crate::base64::{tables, PAD_BYTE};
 
+/// decode
 pub fn decode<T: AsRef<[u8]>>(input: T) -> Result<Vec<u8>, DecodeError> {
     decode_config(input, STANDARD)
 }
+/// decode_config
 pub fn decode_config<T: AsRef<[u8]>>(input: T, config: Config) -> Result<Vec<u8>, DecodeError> {
     let mut buffer = Vec::<u8>::with_capacity(input.as_ref().len() * 4 / 3);
     decode_config_buf(input, config, &mut buffer).map(|_| buffer)
 }
 
+/// DecodeError
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum DecodeError {
     /// An invalid byte was found in the input. The offset and offending byte are provided.
@@ -28,7 +31,7 @@ pub enum DecodeError {
 }
 
 impl fmt::Display for DecodeError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {
             DecodeError::InvalidByte(index, byte) => {
                 write!(f, "Invalid byte {}, offset {}.", byte, index)
@@ -40,7 +43,7 @@ impl fmt::Display for DecodeError {
         }
     }
 }
-
+/// decode_config_buf
 pub fn decode_config_buf<T: AsRef<[u8]>>(
     input: T,
     config: Config,

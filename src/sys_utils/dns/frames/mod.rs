@@ -1,4 +1,4 @@
-pub mod err;
+pub(crate) mod err;
 
 #[cfg(unix)]
 use libc::c_int;

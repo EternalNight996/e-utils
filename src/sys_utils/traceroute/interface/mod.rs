@@ -98,7 +98,7 @@ pub fn get_local_ipaddr() -> Result<IpAddr, String> {
     }
 }
 
-#[allow(dead_code)]
+/// get_interface_index_by_ip
 pub fn get_interface_index_by_ip(ip_addr: IpAddr) -> Option<u32> {
     for iface in datalink::interfaces() {
         for ip in iface.ips {
@@ -110,6 +110,7 @@ pub fn get_interface_index_by_ip(ip_addr: IpAddr) -> Option<u32> {
     return None;
 }
 
+/// get_default_gateway_macaddr
 #[cfg(target_os = "windows")]
 pub fn get_default_gateway_macaddr() -> [u8; 6] {
     match get_default_gateway() {
@@ -497,7 +498,7 @@ impl MacAddr {
 }
 
 impl std::fmt::Display for MacAddr {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let _ = write!(
             f,
             "{:<02x}:{:<02x}:{:<02x}:{:<02x}:{:<02x}:{:<02x}",

@@ -24,8 +24,8 @@ extern "C" {
     fn get_mem_info() -> MemInfo;
 }
 
-/// 获取内存信息
-pub fn get_mem() -> Result<MemInfo, Error> {
+/// get mem
+pub(crate) fn get_mem() -> Result<MemInfo, Error> {
     #[cfg(target_os = "windows")]
     {
         Ok(unsafe { get_mem_info() })

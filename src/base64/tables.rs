@@ -1,6 +1,6 @@
-pub const INVALID_VALUE: u8 = 255;
+pub(crate) const INVALID_VALUE: u8 = 255;
 #[rustfmt::skip]
-pub const STANDARD_ENCODE: &[u8; 64] = &[
+pub(crate) const STANDARD_ENCODE: &[u8; 64] = &[
     65, // input 0 (0x0) => 'A' (0x41)
     66, // input 1 (0x1) => 'B' (0x42)
     67, // input 2 (0x2) => 'C' (0x43)
@@ -67,7 +67,7 @@ pub const STANDARD_ENCODE: &[u8; 64] = &[
     47, // input 63 (0x3F) => '/' (0x2F)
 ];
 #[rustfmt::skip]
-pub const STANDARD_DECODE: &[u8; 256] = &[
+pub(crate) const STANDARD_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 0 (0x0)
     INVALID_VALUE, // input 1 (0x1)
     INVALID_VALUE, // input 2 (0x2)
@@ -326,7 +326,7 @@ pub const STANDARD_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 255 (0xFF)
 ];
 #[rustfmt::skip]
-pub const URL_SAFE_ENCODE: &[u8; 64] = &[
+pub(crate) const URL_SAFE_ENCODE: &[u8; 64] = &[
     65, // input 0 (0x0) => 'A' (0x41)
     66, // input 1 (0x1) => 'B' (0x42)
     67, // input 2 (0x2) => 'C' (0x43)
@@ -393,7 +393,7 @@ pub const URL_SAFE_ENCODE: &[u8; 64] = &[
     95, // input 63 (0x3F) => '_' (0x5F)
 ];
 #[rustfmt::skip]
-pub const URL_SAFE_DECODE: &[u8; 256] = &[
+pub(crate) const URL_SAFE_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 0 (0x0)
     INVALID_VALUE, // input 1 (0x1)
     INVALID_VALUE, // input 2 (0x2)
@@ -652,7 +652,7 @@ pub const URL_SAFE_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 255 (0xFF)
 ];
 #[rustfmt::skip]
-pub const CRYPT_ENCODE: &[u8; 64] = &[
+pub(crate) const CRYPT_ENCODE: &[u8; 64] = &[
     46, // input 0 (0x0) => '.' (0x2E)
     47, // input 1 (0x1) => '/' (0x2F)
     48, // input 2 (0x2) => '0' (0x30)
@@ -719,7 +719,7 @@ pub const CRYPT_ENCODE: &[u8; 64] = &[
     122, // input 63 (0x3F) => 'z' (0x7A)
 ];
 #[rustfmt::skip]
-pub const CRYPT_DECODE: &[u8; 256] = &[
+pub(crate) const CRYPT_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 0 (0x0)
     INVALID_VALUE, // input 1 (0x1)
     INVALID_VALUE, // input 2 (0x2)
@@ -978,7 +978,7 @@ pub const CRYPT_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 255 (0xFF)
 ];
 #[rustfmt::skip]
-pub const BCRYPT_ENCODE: &[u8; 64] = &[
+pub(crate) const BCRYPT_ENCODE: &[u8; 64] = &[
     46, // input 0 (0x0) => '.' (0x2E)
     47, // input 1 (0x1) => '/' (0x2F)
     65, // input 2 (0x2) => 'A' (0x41)
@@ -1045,7 +1045,7 @@ pub const BCRYPT_ENCODE: &[u8; 64] = &[
     57, // input 63 (0x3F) => '9' (0x39)
 ];
 #[rustfmt::skip]
-pub const BCRYPT_DECODE: &[u8; 256] = &[
+pub(crate) const BCRYPT_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 0 (0x0)
     INVALID_VALUE, // input 1 (0x1)
     INVALID_VALUE, // input 2 (0x2)
@@ -1304,7 +1304,7 @@ pub const BCRYPT_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 255 (0xFF)
 ];
 #[rustfmt::skip]
-pub const IMAP_MUTF7_ENCODE: &[u8; 64] = &[
+pub(crate) const IMAP_MUTF7_ENCODE: &[u8; 64] = &[
     65, // input 0 (0x0) => 'A' (0x41)
     66, // input 1 (0x1) => 'B' (0x42)
     67, // input 2 (0x2) => 'C' (0x43)
@@ -1371,7 +1371,7 @@ pub const IMAP_MUTF7_ENCODE: &[u8; 64] = &[
     44, // input 63 (0x3F) => ',' (0x2C)
 ];
 #[rustfmt::skip]
-pub const IMAP_MUTF7_DECODE: &[u8; 256] = &[
+pub(crate) const IMAP_MUTF7_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 0 (0x0)
     INVALID_VALUE, // input 1 (0x1)
     INVALID_VALUE, // input 2 (0x2)
@@ -1630,7 +1630,7 @@ pub const IMAP_MUTF7_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 255 (0xFF)
 ];
 #[rustfmt::skip]
-pub const BINHEX_ENCODE: &[u8; 64] = &[
+pub(crate) const BINHEX_ENCODE: &[u8; 64] = &[
     33, // input 0 (0x0) => '!' (0x21)
     34, // input 1 (0x1) => '"' (0x22)
     35, // input 2 (0x2) => '#' (0x23)
@@ -1697,7 +1697,7 @@ pub const BINHEX_ENCODE: &[u8; 64] = &[
     114, // input 63 (0x3F) => 'r' (0x72)
 ];
 #[rustfmt::skip]
-pub const BINHEX_DECODE: &[u8; 256] = &[
+pub(crate) const BINHEX_DECODE: &[u8; 256] = &[
     INVALID_VALUE, // input 0 (0x0)
     INVALID_VALUE, // input 1 (0x1)
     INVALID_VALUE, // input 2 (0x2)

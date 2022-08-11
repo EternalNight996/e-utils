@@ -105,7 +105,7 @@ mod chunked_encoder {
     use super::{Config, add_padding, encode_to_slice};
 
     /// The output mechanism for ChunkedEncoder's encoded bytes.
-    pub trait Sink {
+    pub(crate) trait Sink {
         type Error;
 
         /// Handle a chunk of encoded base64 data (as UTF-8 bytes)
@@ -115,20 +115,20 @@ mod chunked_encoder {
     const BUF_SIZE: usize = 1024;
 
     /// A base64 encoder that emits encoded bytes in chunks without heap allocation.
-    pub struct ChunkedEncoder {
+    pub(crate) struct ChunkedEncoder {
         config: Config,
         max_input_chunk_len: usize,
     }
 
     impl ChunkedEncoder {
-        pub fn new(config: Config) -> ChunkedEncoder {
+        pub(crate) fn new(config: Config) -> ChunkedEncoder {
             ChunkedEncoder {
                 config,
                 max_input_chunk_len: max_input_length(BUF_SIZE, config),
             }
         }
 
-        pub fn encode<S: Sink>(&self, bytes: &[u8], sink: &mut S) -> Result<(), S::Error> {
+        pub(crate) fn encode<S: Sink>(&self, bytes: &[u8], sink: &mut S) -> Result<(), S::Error> {
             let mut encode_buf: [u8; BUF_SIZE] = [0; BUF_SIZE];
             let encode_table = self.config.char_set.encode_table();
 
@@ -188,7 +188,7 @@ mod chunked_encoder {
 
     #[cfg(any(feature = "alloc", feature = "std", test))]
     impl<'a> StringSink<'a> {
-        pub(crate) fn new(s: &mut String) -> StringSink {
+        pub(crate) fn new(s: &mut String) -> StringSink<'_> {
             StringSink { string: s }
         }
     }

@@ -10,14 +10,15 @@ use pnet::packet::MutablePacket;
 use rand::Rng;
 use std::net::Ipv4Addr;
 
-pub struct PacketBuilder {
+#[derive(Debug)]
+pub(crate) struct PacketBuilder {
     pub(crate) protocol: Protocol,
     source_mac: MacAddr,
     source_ip: Ipv4Addr,
 }
 
 impl PacketBuilder {
-    pub fn new(protocol: Protocol, source_mac: MacAddr, source_ip: Ipv4Addr) -> Self {
+    pub(crate) fn new(protocol: Protocol, source_mac: MacAddr, source_ip: Ipv4Addr) -> Self {
         PacketBuilder {
             source_mac,
             source_ip,
@@ -25,7 +26,7 @@ impl PacketBuilder {
         }
     }
 
-    pub fn build_packet(&self, destination_ip: Ipv4Addr, ttl: u8, port: u16) -> Vec<u8> {
+    pub(crate) fn build_packet(&self, destination_ip: Ipv4Addr, ttl: u8, port: u16) -> Vec<u8> {
         match self.protocol {
             Protocol::UDP => {
                 Self::build_udp_packet(self.source_mac, self.source_ip, destination_ip, ttl, port)

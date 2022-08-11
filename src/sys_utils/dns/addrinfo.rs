@@ -132,6 +132,7 @@ impl AddrInfo {
 ///
 /// It's recommended to use `.collect<io::Result<..>>()` on this
 /// to collapse possible errors.
+#[derive(Debug)]
 pub struct AddrInfoIter {
   orig: *mut c_addrinfo,
   cur: *mut c_addrinfo,
