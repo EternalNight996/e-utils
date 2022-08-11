@@ -35,7 +35,6 @@
     html_logo_url = "https://www.rust-lang.org/logos/rust-logo-128x128-blk.png",
     html_favicon_url = "https://www.rust-lang.org/favicon.ico",
     html_root_url = "https://github.com/EternalNight996",
-    issue_tracker_base_url = "https://github.com/EternalNight996/e-libscanner/issues/"
 )]
 #![warn(
     missing_debug_implementations,
@@ -61,9 +60,9 @@
     while_true
 )]
 #![doc(test(attr(allow(unused_variables), deny(warnings))))]
-#![cfg_attr(doc_cfg, feature(doc_cfg))]
 // Rustc lints.
 #![deny(missing_docs, unused_imports)]
+#![cfg_attr(docsrs, feature(docsrs))]
 
 #[macro_use]
 mod cfgs;

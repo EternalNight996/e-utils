@@ -2,7 +2,7 @@
 # crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["full"]
+default = ["std"]
 full = ["std", "sys_info", "dns", "traceroute", "base64"]
 base64 = []
 random = ["rand"]
@@ -51,35 +51,45 @@ cc = { version = "1", optional = true }
 
 [[example]]
 name = "std"
+path = "examples/std.rs"
 required-features = ["std"]
+
 [[example]]
 name = "base64"
+path = "examples/base64.rs"
 required-features = ["base64"]
+
 [[example]]
 name = "random"
+path = "examples/random.rs"
 required-features = ["random"]
+
 [[example]]
-name = "sys_info"
-path = "examples/sys_info.rs"
+name = "info"
+path = "examples/info.rs"
 required-features = ["sys_info"]
+
 [[example]]
-path = "examples/dns.rs"
 name = "dns"
+path = "examples/dns.rs"
 required-features = ["dns"]
+
 [[example]]
-path = "examples/traceroute.rs"
 name = "traceroute"
+path = "examples/traceroute.rs"
 required-features = ["traceroute"]
 
 [package.metadata.docs.rs]
 # To build locally:
 # RUSTDOCFLAGS="--cfg doc_cfg" cargo +nightly doc --all-features --no-deps --open
+# rustdoc-args = ["--cfg", "doc_cfg"]
 all-features = true
-rustdoc-args = ["--cfg", "doc_cfg"]
+# defines the configuration attribute `docsrs`
+rustdoc-args = ["--cfg", "docsrs"]
 
 [package]
 name = "e-utils"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "a rust utils"
