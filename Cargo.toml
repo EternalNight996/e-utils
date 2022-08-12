@@ -2,7 +2,7 @@
 # crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["std"]
+default = ["full"]
 full = ["std", "sys_info", "dns", "traceroute", "base64"]
 base64 = []
 random = ["rand"]
@@ -79,17 +79,15 @@ name = "traceroute"
 path = "examples/traceroute.rs"
 required-features = ["traceroute"]
 
-[package.metadata.docs.rs]
+# [package.metadata.docs.rs]
 # To build locally:
 # RUSTDOCFLAGS="--cfg doc_cfg" cargo +nightly doc --all-features --no-deps --open
-# rustdoc-args = ["--cfg", "doc_cfg"]
+rustdoc-args = ["--cfg", "doc_cfg"]
 all-features = true
-# defines the configuration attribute `docsrs`
-rustdoc-args = ["--cfg", "docsrs"]
 
 [package]
 name = "e-utils"
-version = "0.1.2"
+version = "0.1.4"
 edition = "2021"
 authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "a rust utils"

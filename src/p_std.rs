@@ -30,7 +30,7 @@
 #[macro_export]
 #[doc(hidden)]
 #[cfg(feature = "std")]
-#[cfg_attr(docsrs, doc(cfg(feature = "std")))]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "std")))]
 macro_rules! output {
     () => {print!("\n")};
     (rgb[$rgb_f:expr, $rgb_b:expr] $fmt:expr) => {::std::eprintln!("{}", $crate::rgb_format!(rgb[$rgb_f, $rgb_b] $fmt))};

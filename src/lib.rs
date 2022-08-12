@@ -34,7 +34,7 @@
 #![doc(
     html_logo_url = "https://www.rust-lang.org/logos/rust-logo-128x128-blk.png",
     html_favicon_url = "https://www.rust-lang.org/favicon.ico",
-    html_root_url = "https://github.com/EternalNight996",
+    html_root_url = "https://github.com/EternalNight996"
 )]
 #![warn(
     missing_debug_implementations,
@@ -62,7 +62,7 @@
 #![doc(test(attr(allow(unused_variables), deny(warnings))))]
 // Rustc lints.
 #![deny(missing_docs, unused_imports)]
-#![cfg_attr(docsrs, feature(docsrs))]
+#![cfg_attr(doc_cfg, feature(doc_cfg))]
 
 #[macro_use]
 mod cfgs;
@@ -79,21 +79,23 @@ cfg_std! {
 
 /// base64
 #[cfg(feature = "base64")]
-#[cfg_attr(docsrs, doc(cfg(feature = "base64")))]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "base64")))]
 pub mod base64;
 
-cfg_dns! {
-    /// dns
-    #[path="sys_utils/dns/mod.rs"]
-    pub mod dns;
-}
-cfg_traceroute! {
-    /// traceroute
-    #[path="sys_utils/traceroute/mod.rs"]
-    pub mod traceroute;
-}
-cfg_sysinfo! {
-    /// system info
-    #[path="sys_utils/info/mod.rs"]
-    pub mod info;
-}
+/// dns
+#[cfg(feature = "dns")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "dns")))]
+#[path = "sys_utils/dns/mod.rs"]
+pub mod dns;
+
+/// traceroute
+#[cfg(feature = "traceroute")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "traceroute")))]
+#[path = "sys_utils/traceroute/mod.rs"]
+pub mod traceroute;
+
+/// system info
+#[cfg(feature = "sys_info")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "sys_info")))]
+#[path = "sys_utils/info/mod.rs"]
+pub mod info;
