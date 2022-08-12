@@ -62,7 +62,7 @@
 #![doc(test(attr(allow(unused_variables), deny(warnings))))]
 // Rustc lints.
 #![deny(missing_docs, unused_imports)]
-// #![cfg_attr(docsrs, feature(docsrs))]
+#![cfg_attr(docsrs, feature(docsrs))]
 
 #[macro_use]
 mod cfgs;
