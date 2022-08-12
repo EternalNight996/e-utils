@@ -79,15 +79,15 @@ name = "traceroute"
 path = "examples/traceroute.rs"
 required-features = ["traceroute"]
 
-[package.metadata.docs.rs]
+# [package.metadata.docs.rs]
 # To build locally:
 # RUSTDOCFLAGS="--cfg doc_cfg" cargo +nightly doc --all-features --no-deps --open
-rustdoc-args = ["--cfg", "docsrs"]
-all-features = true
+# rustdoc-args = ["--cfg", "docsrs"]
+# all-features = true
 
 [package]
 name = "e-utils"
-version = "0.1.12"
+version = "0.1.13"
 edition = "2021"
 authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "a rust utils"
