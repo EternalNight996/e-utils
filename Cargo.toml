@@ -87,7 +87,7 @@ all-features = true
 
 [package]
 name = "e-utils"
-version = "0.1.7"
+version = "0.1.8"
 edition = "2021"
 authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "a rust utils"
