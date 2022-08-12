@@ -87,7 +87,7 @@ required-features = ["traceroute"]
 
 [package]
 name = "e-utils"
-version = "0.1.13"
+version = "0.1.14"
 edition = "2021"
 authors = ["Eternal <EternalNight996@gmail.com, EternalNightYeah2@yeah.net>"]
 description = "a rust utils"
