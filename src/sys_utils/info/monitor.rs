@@ -1,3 +1,5 @@
+#[cfg(feature = "sys_info")]
+#[cfg(target_os = "windows")]
 use winapi::um::winuser::{
     GetSystemMetrics, SM_CXFULLSCREEN, SM_CXSCREEN, SM_CXVIRTUALSCREEN, SM_CYFULLSCREEN,
     SM_CYSCREEN, SM_CYVIRTUALSCREEN, SM_XVIRTUALSCREEN, SM_YVIRTUALSCREEN,
@@ -18,6 +20,8 @@ pub struct MonitorInfo {
 }
 
 impl MonitorInfo {
+    #[cfg(feature = "sys_info")]
+    #[cfg(target_os = "windows")]
     pub fn new() -> Self {
         Self {
             xscreen: unsafe { GetSystemMetrics(SM_CXSCREEN) },
@@ -28,6 +32,13 @@ impl MonitorInfo {
             cyvirtual_screen: unsafe { GetSystemMetrics(SM_CYVIRTUALSCREEN) },
             xvirtual_screen: unsafe { GetSystemMetrics(SM_XVIRTUALSCREEN) },
             yvirtual_screen: unsafe { GetSystemMetrics(SM_YVIRTUALSCREEN) },
+        }
+    }
+    #[cfg(not(feature = "sys_info"))]
+    #[cfg(not(target_os = "windows"))]
+    pub fn new() -> Self {
+        Self {
+            ..Default::default()
         }
     }
 }

@@ -38,7 +38,7 @@
 )]
 #![warn(
     missing_debug_implementations,
-    missing_doc_code_examples,
+    rustdoc::missing_doc_code_examples,
     missing_docs,
     rust_2018_idioms,
     unreachable_pub,
