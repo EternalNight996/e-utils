@@ -8,5 +8,5 @@
 # 📖 演示
 ```toml
 [dependencies]
-e-utils = { version = "0.1.0", features = ["full"] }
+e-utils = { version = "^0.1", features = ["full"] }
 ```
