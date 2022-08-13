@@ -2,7 +2,7 @@
 # crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["full"]
+default = ["std"]
 full = ["std", "sys_info", "dns", "traceroute", "base64"]
 base64 = []
 random = ["rand"]
