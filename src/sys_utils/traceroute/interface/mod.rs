@@ -3,11 +3,14 @@ use std::net::{IpAddr, Ipv4Addr, Ipv6Addr, UdpSocket};
 #[cfg(target_os = "windows")]
 #[path = "./windows.rs"]
 mod win;
-use pnet::datalink;
 #[cfg(target_os = "windows")]
 use win::get_interfaces;
-mod memalloc;
+#[cfg(any(target_os = "unix", target_os = "linux"))]
+mod unix;
+#[cfg(any(target_os = "unix", target_os = "linux"))]
+use unix::get_interfaces;
 
+mod memalloc;
 /// Structure of Network Interface information
 #[derive(Clone, Debug)]
 pub struct Interface {
@@ -98,9 +101,9 @@ pub fn get_local_ipaddr() -> Result<IpAddr, String> {
     }
 }
 
-/// get_interface_index_by_ip
+/// Get interface index by ip
 pub fn get_interface_index_by_ip(ip_addr: IpAddr) -> Option<u32> {
-    for iface in datalink::interfaces() {
+    for iface in pnet_datalink::interfaces() {
         for ip in iface.ips {
             if ip.ip() == ip_addr {
                 return Some(iface.index);
@@ -110,7 +113,7 @@ pub fn get_interface_index_by_ip(ip_addr: IpAddr) -> Option<u32> {
     return None;
 }
 
-/// get_default_gateway_macaddr
+/// Get default gateway mac address on windows
 #[cfg(target_os = "windows")]
 pub fn get_default_gateway_macaddr() -> [u8; 6] {
     match get_default_gateway() {
@@ -119,6 +122,7 @@ pub fn get_default_gateway_macaddr() -> [u8; 6] {
     }
 }
 
+/// Get default gateway mac address on not windows
 #[cfg(not(target_os = "windows"))]
 pub fn get_default_gateway_macaddr() -> [u8; 6] {
     MacAddr::zero().octets()
